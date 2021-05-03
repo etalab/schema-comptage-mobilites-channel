@@ -44,7 +44,7 @@
          "example": "Baix",
          "type": "string",
          "constraints": {
-            "required": 123
+            "required": false
          }
       }
    ]
