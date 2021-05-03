@@ -1,3 +1,2 @@
 nom_compteur,id_local_compteur,code_com,xlong,ylat,type_pratique,type_voie,id_amenagement_cyclable,type_relevé,type_transmission,type_compteur,sens_circulation,source,date_servic,date_maj,pas_de_temps"
 Baix,200000867,07022,44.711910,4.764110,"VELO","VOIE VERTE","","MANUEL","API","ZELT","SO",Baix,2019,2021-05-03,900
-,200000868,07022,44.711911,4.764111
