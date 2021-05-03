@@ -88,5 +88,6 @@
             "maximum": 90
          }
       }
-   ]
+   ],
+   "primaryKey": "id_local_compteur"
 }
