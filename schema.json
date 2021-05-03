@@ -40,7 +40,7 @@
    "fields": [
       {
          "name": "nom_compteur",
-         "description": "nom du compteur",
+         "description": "Nom du compteur",
          "example": "Baix",
          "type": "string",
          "constraints": {
@@ -49,7 +49,7 @@
       },
       {
          "name": "id_local_compteur",
-         "description": "identifiant unique du compteur dans les bases de données de la collectivité territoriale productrice de données",
+         "description": "Identifiant unique du compteur dans les bases de données de la collectivité territoriale productrice de données",
          "example": "Baix",
          "type": "string",
          "constraints": {
@@ -87,7 +87,159 @@
             "minimum": -90,
             "maximum": 90
          }
-      }
+      },
+      {
+         "name": "type_pratique",
+         "description": "Types de pratiques enregistrés par le compteur sur la voie",
+         "example": "VELO",
+         "type": "string",
+         "constraints": {
+            "required": false,
+            "enum": [
+               "VELO",
+               "SCOOTER",
+               "PIETON",
+               "TROTINETTE",
+               "NON DEFINI"
+            ]
+         }
+      },
+      {
+         "name": "type_voie",
+         "description": "Type de voie où est installé le compteur vélo",
+         "example": "VOIE VERTE",
+         "type": "string",
+         "constraints": {
+            "required": false,
+            "enum": [
+               "PISTE CYCLABLE",
+               "BANDE CYCLABLE",
+               "DOUBLE SENS CYCLABLE PISTE",
+               "DOUBLE SENS CYCLABLE BANDE ",
+               "VOIE VERTE",
+               "VELO RUE",
+               "COULOIR BUS VELO",
+               "RAMPE",
+               "GOULOTTE",
+               "AMENAGEMENT MIXTE PIETON VELO HORS VOIE VERTE",
+               "CHAUSSEE A VOIE CENTRALE BANALISEE",
+               "ACCOTEMENT REVETU HORS CVCB",
+               "AUTRE"
+            ]
+         }
+         }, 
+         {
+            "name": "id_amenagement_cyclable",
+            "description": "identifiant de l'aménagement cyclable dans la base nationale des aménagaments cyclables",
+            "example": "",
+            "type": "string",
+            "constraints": {
+               "required": false
+            }
+            },
+            {
+               "name": "type_relevé",
+               "description": "Méthode utilisée pour récupérer les données depuis le compteur",
+               "example": "MANUEL",
+               "type": "string",
+               "constraints": {
+                  "required": false,
+                  "enum": [
+                     "TELETRANSMISSION", 
+                     "MANUEL"
+                  ]
+               }
+               },
+               {
+                  "name": "type_transmission",
+                  "description": "Méthode utilisée pour transmettre les données vers le portail opendata",
+                  "example": "API",
+                  "type": "string",
+                  "constraints": {
+                     "required": false,
+                     "enum": [
+                        "API", 
+                        "MANUEL"
+                     ]
+                  }
+               },
+               {
+                  "name": "type_compteur",
+                  "description": "Type de compteur",
+                  "example": "ZELT",
+                  "type": "string",
+                  "constraints": {
+                     "required": false,
+                     "enum": [
+                        "BOUCLE", 
+                        "ZELT",
+                        "PIEZOELECTRIQUE",
+                        "RADAR",
+                        "VIDEO",
+                        "PNEUMATIQUE",
+                        "DALLE",
+                        "PYROELECTRIQUE",
+                        "HUMAIN",
+                        "TUBE", 
+                        "AUTRE"
+                     ]
+                  }
+               },
+               {
+                  "name": "sens_circulation",
+                  "description": "Sens de circulation des usagers",
+                  "example": "NO",
+                  "type": "string",
+                  "constraints": {
+                     "required": false,
+                     "enum": [
+                        "N", 
+                        "NO",
+                        "O",
+                        "SO",
+                        "S",
+                        "SE",
+                        "E",
+                        "NE"
+                     ]
+                  }
+               },
+               {
+                  "name": "source",
+                  "description": "Entité ayant fourni les données",
+                  "example": "Baix",
+                  "type": "string",
+                  "constraints": {
+                     "required": true
+                  }
+                  },
+                  {
+                     "name": "date_service",
+                     "description": "Date de mise en service du compteur vélo",
+                     "example": "2019",
+                     "type": "integer",
+                     "constraints": {
+                        "required": false
+                     }
+                     },
+                     {
+                        "name": "date_maj",
+                        "description": "Date de dernière mise à jour des données, Notation ISO 8601, format AAAA-MM-JJ",
+                        "example": "2021-05-03",
+                        "type": "string",
+                        "constraints": {
+                           "required": false
+                        }
+                        },
+                        {
+                           "name": "pas_de_temps",
+                           "description": "Pas de temps des données fournies, en secondes",
+                           "example": "900",
+                           "type": "number",
+                           "constraints": {
+                              "required": false
+                           }
+                           }          
    ],
    "primaryKey": "id_local_compteur"
 }
