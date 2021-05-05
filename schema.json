@@ -131,14 +131,14 @@
          {
             "name": "id_amenagement_cyclable",
             "description": "identifiant de l'aménagement cyclable dans la base nationale des aménagaments cyclables",
-            "example": "",
+            "example": "07022-AC-001",
             "type": "string",
             "constraints": {
                "required": false
             }
             },
             {
-               "name": "type_relevé",
+               "name": "type_releve",
                "description": "Méthode utilisée pour récupérer les données depuis le compteur",
                "example": "MANUEL",
                "type": "string",
@@ -195,12 +195,12 @@
                      "enum": [
                         "N", 
                         "NO",
+                        "NE",
                         "O",
                         "SO",
                         "S",
                         "SE",
-                        "E",
-                        "NE"
+                        "E"
                      ]
                   }
                },
