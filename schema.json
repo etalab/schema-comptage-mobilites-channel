@@ -165,20 +165,22 @@
                },
                {
                   "name": "type_compteur",
-                  "description": "Type de compteur",
-                  "example": "ZELT",
+                  "description": "Type de compteur. Choix multiple possible avec chaque valeur séparée par une virgule",
+                  "example": "VIDEO",
                   "type": "string",
                   "constraints": {
                      "required": false,
                      "enum": [
                         "BOUCLE", 
-                        "ZELT",
-                        "PIEZOELECTRIQUE",
+                        "BOUCLE ZELT TEMPORAIRE",
+                        "BOUCLE A INDUCTION",
+                        "CAPTEUR A INDUCTION MAGNETIQUE",
+                        "CAPTEUR PIEZOELECTRIQUE",
                         "RADAR",
                         "VIDEO",
                         "PNEUMATIQUE",
-                        "DALLE",
-                        "PYROELECTRIQUE",
+                        "DALLES CAPTEUR DE PRESSION",
+                        "CAPTEUR A FAISCEAU LUMINEUX",
                         "HUMAIN",
                         "TUBE", 
                         "AUTRE"
@@ -186,8 +188,27 @@
                   }
                },
                {
-                  "name": "sens_circulation",
-                  "description": "Sens de circulation des usagers",
+                  "name": "sens_circulation_1",
+                  "description": "direction vers laquelle se dirigent les usagers comptés",
+                  "example": "SO",
+                  "type": "string",
+                  "constraints": {
+                     "required": false,
+                     "enum": [
+                        "N", 
+                        "NO",
+                        "NE",
+                        "O",
+                        "SO",
+                        "S",
+                        "SE",
+                        "E"
+                     ]
+                  }
+               },
+               {
+                  "name": "sens_circulation_2",
+                  "description": "deuxième direction vers laquelle se dirigent les usagers comptés. Ce champ est reservé aux appareils pouvant compter dans deux sens de circulations.",
                   "example": "NO",
                   "type": "string",
                   "constraints": {
