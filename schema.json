@@ -179,21 +179,7 @@
                   "type": "string",
                   "constraints": {
                      "required": false,
-                     "enum": [
-                        "BOUCLE", 
-                        "BOUCLE ZELT TEMPORAIRE",
-                        "BOUCLE A INDUCTION",
-                        "CAPTEUR A INDUCTION MAGNETIQUE",
-                        "CAPTEUR PIEZOELECTRIQUE",
-                        "RADAR",
-                        "VIDEO",
-                        "PNEUMATIQUE",
-                        "DALLES CAPTEUR DE PRESSION",
-                        "CAPTEUR A FAISCEAU LUMINEUX",
-                        "HUMAIN",
-                        "TUBE", 
-                        "AUTRE"
-                     ]
+                     "pattern": "(?:(?:^|,)(BOUCLE|BOUCLE ZELT TEMPORAIRE|BOUCLE A INDUCTION|CAPTEUR A INDUCTION MAGNETIQUE|CAPTEUR PIEZOELECTRIQUE|RADAR|VIDEO|PNEUMATIQUE|DALLES CAPTEUR DE PRESSION|CAPTEUR A FAISCEAU LUMINEUX|HUMAIN|TUBE|AUTRE))+$"
                   }
                },
                {
