@@ -50,7 +50,16 @@
       {
          "name": "id_local_compteur",
          "description": "Identifiant unique du compteur dans les bases de données de la collectivité territoriale productrice de données",
-         "example": "Baix",
+         "example": "C01-Baix",
+         "type": "string",
+         "constraints": {
+            "required": true
+         }
+      },
+      {
+         "name": "id_site_comptage",
+         "description": "Identifiant unique du site où est installé le compteur dans les bases de données de la collectivité territoriale productrice de données. Ce champ peut être utilisé pour grouper plusieurs compteurs entre eux",
+         "example": "C-Baix",
          "type": "string",
          "constraints": {
             "required": false
