@@ -1,11 +1,16 @@
 {
    "$schema": "https://specs.frictionlessdata.io/schemas/table-schema.json",
-   "name": "schema-comptage-velo",
-   "title": "Schéma du comptage vélo",
+   "name": "schema-comptage-velo-statique",
+   "title": "Schéma du comptage vélo (partie statique)",
    "description": "Spécification du fichier d'échange relatif aux comptages vélo.",
-   "keywords": [],
+   "keywords": [
+      "comptage",
+      "vélo",
+      "mobilité",
+      "statique"
+   ],
    "countryCode": "FR",
-   "homepage": "https://github.com/etalab/schema-comptage-velo",
+   "homepage": "https://github.com/etalab/schema-comptage-velo-statique",
    "licenses": [
       {
          "title": "Etalab Licence Ouverte 2.0",
@@ -21,7 +26,7 @@
       }
    ],
    "created": "2021-05-03",
-   "lastModified": "2021-05-03",
+   "lastModified": "2021-05-12",
    "version": "0.1.0",
    "contributors": [
       {
@@ -67,7 +72,7 @@
       },
       {
          "name": "code_com",
-         "description": "Code INSEE de la commune où se trouve le stationnement vélo",
+         "description": "Code INSEE de la commune où se trouve le compteur vélo",
          "example": "n71729735",
          "type": "string",
          "constraints": {
@@ -77,7 +82,7 @@
       },
       {
          "name": "xlong",
-         "description": "La longitude en degrés décimaux (point comme séparateur décimal, avec au moins 4 chiffres après le point décimal) de la localisation du centre de l'emplacement de stationnement exprimée dans le système de coordonnées WGS84.",
+         "description": "La longitude en degrés décimaux (point comme séparateur décimal, avec au moins 4 chiffres après le point décimal) de la localisation du centre de l'emplacement du compteur exprimée dans le système de coordonnées WGS84.",
          "example": "1.452323",
          "type": "number",
          "constraints": {
@@ -88,7 +93,7 @@
       },
       {
          "name": "ylat",
-         "description": "La latitude en degrés décimaux (point comme séparateur décimal, avec au moins 4 chiffres après le point décimal) de la localisation de centre de l'emplacement de stationnement exprimée dans le système de coordonnées WGS84.",
+         "description": "La latitude en degrés décimaux (point comme séparateur décimal, avec au moins 4 chiffres après le point décimal) de la localisation de centre de l'emplacement du compteur exprimée dans le système de coordonnées WGS84.",
          "example": "46.59698",
          "type": "number",
          "constraints": {
