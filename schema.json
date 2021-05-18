@@ -22,7 +22,7 @@
       {
          "title": "Fichier valide (CSV)",
          "name": "exemple-valide-csv",
-         "path": "https://github.com/etalab/schema-comptage-velo/raw/master/exemple-valide.csv"
+         "path": "https://github.com/etalab/schema-comptage-velo-statique/raw/master/exemple-valide.csv"
       }
    ],
    "created": "2021-05-03",
