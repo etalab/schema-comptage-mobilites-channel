@@ -119,5 +119,4 @@ frictionless validate --type schema schema.json
 
 # Test de la conformité des fichiers d'exemples
 frictionless validate --schema schema.json exemple-valide.csv
-frictionless validate --schema schema.json exemple-valide.xlsx
 ```
