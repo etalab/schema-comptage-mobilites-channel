@@ -43,8 +43,7 @@ etc.
 
 ## Format de fichier
 
-Les jeux de données seront publiées au format CSV UTF8 avec séparateur ";". Certains champs sont obligatoires et d'autres optionnels. Les champs obligatoires doivent être complétés. Les champs optionnels peuvent être vides si la donnée n’est pas disponible. La colonne doit toutefois être présente.
-
+Les jeux de données seront publiées au format CSV UTF8 avec séparateur virgule ",". Certains champs sont obligatoires et d'autres optionnels. Les champs obligatoires doivent être complétés. Les champs optionnels peuvent être vides si la donnée n’est pas disponible. La colonne doit toutefois être présente.
 
 ## Publication
 
@@ -54,7 +53,7 @@ Les producteurs pourront :
 - publier directement sur data.gouv.fr ;
 - publier sur un portail local ou régional et s'assurer que les données publiées sont bien moissonnées et référencées sur data.gouv.fr.
 
-Nous préconisons aux producteurs de données de publier leurs fichiers avec la règle de nommage suivante : comptagevelo_statique_nom.csv avec nom étant le nom de la collectivité productrice des données, par exemple comptagevelo_statique_Baix.csv
+Nous préconisons aux producteurs de données de publier leurs fichiers avec la règle de nommage suivante : `comptagevelo_statique_nom.csv` avec nom étant le nom de la collectivité productrice des données, par exemple `comptagevelo_statique_Baix.csv`.
 
 
 ## Conditions d’utilisation
@@ -120,5 +119,12 @@ frictionless validate --type schema schema.json
 
 # Test de la conformité des fichiers d'exemples
 frictionless validate --schema schema.json exemple-valide.csv
-frictionless validate --schema schema.json exemple-valide.xlsx
+# retour positif
+
+# Test de la non-conformité des fichiers non valides
+frictionless validate --schema schema.json exemple-invalide-doublon-primary-key.csv 
+# erreurs
+
+frictionless validate --schema schema.json exemple-invalide-type_compteur.csv
+# idem
 ```
