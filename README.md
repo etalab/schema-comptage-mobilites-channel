@@ -119,4 +119,12 @@ frictionless validate --type schema schema.json
 
 # Test de la conformité des fichiers d'exemples
 frictionless validate --schema schema.json exemple-valide.csv
+# retour positif
+
+# Test de la non-conformité des fichiers non valides
+frictionless validate --schema schema.json exemple-invalide-doublon-primary-key.csv 
+# erreurs
+
+frictionless validate --schema schema.json exemple-invalide-type_compteur.csv
+# idem
 ```
