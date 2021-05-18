@@ -144,7 +144,7 @@
       },
       {
          "name": "id_amenagement_cyclable",
-         "description": "identifiant de l'aménagement cyclable dans la base nationale des aménagaments cyclables",
+         "description": "identifiant de l'aménagement cyclable dans la base nationale des aménagements cyclables",
          "example": "07022-AC-001",
          "type": "string",
          "constraints": {
