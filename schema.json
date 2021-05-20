@@ -256,7 +256,7 @@
          "name": "pas_de_temps",
          "description": "Pas de temps des données fournies, en secondes. Doit être utilisé pour extrapoler la date de fin du comptage si elle est absente.",
          "example": "900",
-         "type": "number",
+         "type": "integer",
          "constraints": {
             "required": false
          }
