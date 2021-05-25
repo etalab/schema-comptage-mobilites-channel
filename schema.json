@@ -26,7 +26,7 @@
       }
    ],
    "created": "2021-05-03",
-   "lastModified": "2021-05-18",
+   "lastModified": "2021-05-25",
    "version": "0.1.0",
    "contributors": [
       {
@@ -39,6 +39,18 @@
          "title": "Thibaut Barrère",
          "email": "thibaut.barrere@beta.gouv.fr",
          "organisation": "transport.data.gouv.fr",
+         "role": "contributor"
+      },
+      {
+         "title": "Stéphanie Mangin",
+         "email": "stephanie.mangin@velo-territoires.org",
+         "organisation": "Vélo & Territoires",
+         "role": "contributor"
+      },
+      {
+         "title": "Emmanuel Roche",
+         "email": "emmanuel.roche@grandchambery.fr",
+         "organisation": "Grand Chambéry",
          "role": "contributor"
       }
    ],
@@ -73,7 +85,7 @@
       {
          "name": "code_com",
          "description": "Code INSEE de la commune où se trouve le compteur vélo",
-         "example": "n71729735",
+         "example": "07022",
          "type": "string",
          "constraints": {
             "required": false,
@@ -104,18 +116,12 @@
       },
       {
          "name": "type_pratique",
-         "description": "Types de pratiques enregistrés par le compteur sur la voie",
+         "description": "Types de pratiques enregistrés par le compteur sur la voie. Choix multiple possible avec chaque valeur encadrée par des guillemets et séparée par une virgule",
          "example": "VELO",
          "type": "string",
          "constraints": {
             "required": false,
-            "enum": [
-               "VELO",
-               "SCOOTER",
-               "PIETON",
-               "TROTINETTE",
-               "NON DEFINI"
-            ]
+            "pattern": "(?:(?:^|,)(VELO|SCOOTER|PIETON|TROTINETTE|CHEVALIER|NON DEFINI))+$"
          }
       },
       {
@@ -184,7 +190,7 @@
          "type": "string",
          "constraints": {
             "required": false,
-            "pattern": "(?:(?:^|,)(BOUCLE|BOUCLE ZELT TEMPORAIRE|BOUCLE A INDUCTION|CAPTEUR A INDUCTION MAGNETIQUE|CAPTEUR PIEZOELECTRIQUE|RADAR|VIDEO|PNEUMATIQUE|DALLES CAPTEUR DE PRESSION|CAPTEUR A FAISCEAU LUMINEUX|HUMAIN|TUBE|AUTRE))+$"
+            "pattern": "(?:(?:^|,)(BOUCLE|PYROELECTRIQUE|BOUCLE A INDUCTION|CAPTEUR A INDUCTION MAGNETIQUE|CAPTEUR PIEZOELECTRIQUE|RADAR|VIDEO|PNEUMATIQUE|DALLES CAPTEUR DE PRESSION|CAPTEUR A FAISCEAU LUMINEUX|HUMAIN|TUBE|AUTRE))+$"
          }
       },
       {
@@ -236,9 +242,9 @@
       },
       {
          "name": "date_service",
-         "description": "Date de mise en service du compteur vélo",
-         "example": "2019",
-         "type": "integer",
+         "description": "Date de mise en service du compteur vélo, Notation ISO 8601, format AAAA-MM-JJ",
+         "example": "2019-03-21",
+         "type": "date",
          "constraints": {
             "required": false
          }
@@ -247,7 +253,7 @@
          "name": "date_maj",
          "description": "Date de dernière mise à jour des données, Notation ISO 8601, format AAAA-MM-JJ",
          "example": "2021-05-03",
-         "type": "string",
+         "type": "date",
          "constraints": {
             "required": false
          }
@@ -256,7 +262,7 @@
          "name": "pas_de_temps",
          "description": "Pas de temps des données fournies, en secondes. Doit être utilisé pour extrapoler la date de fin du comptage si elle est absente.",
          "example": "900",
-         "type": "integer",
+         "type": "number",
          "constraints": {
             "required": false
          }
