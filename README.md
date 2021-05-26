@@ -1,6 +1,6 @@
 :warning: Travail en cours de mise au point d'un schéma pour le schéma de comptage vélo.
 
-# Schéma de données pour le comptage vélo (partie statique)
+# Schéma de données pour le comptage de vélos (partie statique)
 
 Spécifications du fichier d'échange relatif aux comptages de vélos.
 
@@ -10,18 +10,18 @@ L'identifiant unique du compteur dans les bases de données de la collectivité 
 
 ## Contexte
 
-Dans le cadre des travaux de l’équipe du Point d’accès national et de la mise en oeuvre de l’ouverture des données pour améliorer l’information dont disposent les voyageurs, l’équipe de transport.data.gouv.fr propose une solution simple et structurée pour l’harmonisation et l'ouverture des données de comptage de vélos : le schéma de comptage vélo "statique" et "dynamique".
+Dans le cadre des travaux de l’équipe du Point d’accès national et de la mise en oeuvre de l’ouverture des données pour améliorer l’information dont disposent les voyageurs, l’équipe de transport.data.gouv.fr propose une solution simple et structurée pour l’harmonisation et l'ouverture des données de comptage de vélos : le schéma de comptage de vélos "statique" et "dynamique".
 
 Cette distinction statique/dynamique a été faite car :
 - le fichier "statique" permet de donner des précisions sur le compteur vélo comme sa localisation, la méthode utilisée pour récupérer et transmettre les données, les types de pratiques comptabilisées etc.
 - le fichier "dynamique" permet d'enregistrer le nombre de passage pendant un temps défini. 
 
-Ce schéma décrit le schéma pour les compteurs de vélos. 
-Il a été co-construit avec Vélo & Territoires, des collectivités, fournisseurs de compteur vélo, associations vélo et réutilisateurs. Deux ateliers ouverts (le 23/04/2021 et le //2021) ont permis sa production. 
+Ce schéma décrit fichier d’échange pour les compteurs de vélos. 
+Il a été co-construit avec Vélo & Territoires, des collectivités, des fournisseurs de compteur de vélos, associations d'usagers de vélos et des réutilisateurs. Deux ateliers ouverts (le 23/04/2021 et le //2021) ont permis sa production. 
 
 ## Cadre juridique
 
-L’ouverture des données sur le comptage vélo ne répond à aucune obligation réglementaire et n'est donc pas encadrée par le Règlement Européen (UE 2017 1926) ni par la Loi d'Orientation des Mobilités.
+L’ouverture des données sur le comptage de vélos ne répond à aucune obligation réglementaire et n'est donc pas encadrée par le Règlement Européen (UE 2017 1926) ni par la Loi d'Orientation des Mobilités.
 
 Les collectivités harmonisent et publient ces données librement. 
 
@@ -30,7 +30,7 @@ Les collectivités harmonisent et publient ces données librement.
 Afin de faciliter la réutilisation et réduire le coût d’intégration de ces données dans des services tiers, un schéma a été défini afin d’assurer une harmonisation de ces données sur l’ensemble du territoire. Ce schéma définit des informations indispensables et complémentaires à fournir par le producteur. Cette distinction a été mise en place pour ne pas pénaliser les petits producteurs de données, et définit un standard minimal de complétude des données. Il est toutefois demandé aux producteurs de données de compléter le schéma avec le plus grand niveau de détail possible, afin de transmettre une information plus riche à l’usager final. 
 
 La base présente plusieurs cas d’usage :
-Elle recense les compteurs de vélos d’une collectivité en permettant à des services de calcul d’itinéraire d’intégrer ces données. 
+elle recense les compteurs de vélos d’une collectivité en permettant à des services de calcul d’itinéraire d’intégrer ces données et à chacun de suivre la fréquentation cyclable d'un territoire donné. 
 Ce dataset comprend notamment : 
 - l'identifiant unique pérenne du compteur ;
 - la localisation du compteur ;
@@ -42,7 +42,7 @@ etc.
 
 ## Format de fichier
 
-Les jeux de données seront publiées au format CSV UTF8 avec séparateur virgule ",". Certains champs sont obligatoires et d'autres optionnels. Les champs obligatoires doivent être complétés. Les champs optionnels peuvent être vides si la donnée n’est pas disponible. La colonne doit toutefois être présente.
+Les jeux de données seront publiés au format CSV UTF8 avec séparateur virgule ",". Certains champs sont obligatoires et d'autres optionnels. Les champs obligatoires doivent être complétés. Les champs optionnels peuvent être vides si la donnée n’est pas disponible. La colonne doit toutefois être présente.
 
 ## Publication
 
@@ -68,8 +68,6 @@ Un fichier d'exemple valide "exemple-valide.csv" a été édité où tous les ch
 Deux fichiers d'exemples invalides sont fournis  : 
 - un fichier d'exemple "exemple-invalide-type_compteur.csv" afin d'illustrer une erreur qui pourrait être faite par un producteur dans le champ "type_compteur". 
 - un fichier d'exemple "exemple-invalide-doublon-primary-key.csv" où l'erreur repose sur le fait qu'il y ait deux fois le même identifiant unique de compteur. La valeur "id_local_compteur" ne peut être présente deux fois dans un seul fichier. 
-
-Un fichier d'exemple valide.
 
 ## Notes techniques pour contribuer à ce schéma
 
