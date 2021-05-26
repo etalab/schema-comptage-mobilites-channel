@@ -1,8 +1,8 @@
 {
    "$schema": "https://specs.frictionlessdata.io/schemas/table-schema.json",
    "name": "schema-comptage-velo-statique",
-   "title": "Schéma du comptage vélo (partie statique)",
-   "description": "Spécification du fichier d'échange relatif aux comptages vélo.",
+   "title": "Schéma du comptage de vélos (partie statique)",
+   "description": "Spécification du fichier d'échange relatif aux comptages de vélos.",
    "keywords": [
       "comptage",
       "vélo",
@@ -121,7 +121,7 @@
          "type": "string",
          "constraints": {
             "required": false,
-            "pattern": "(?:(?:^|,)(VELO|SCOOTER|PIETON|TROTINETTE|CHEVALIER|NON DEFINI))+$"
+            "pattern": "(?:(?:^|,)(VELO|SCOOTER|PIETON|TROTINETTE|CAVALIER|NON DEFINI))+$"
          }
       },
       {
@@ -190,7 +190,7 @@
          "type": "string",
          "constraints": {
             "required": false,
-            "pattern": "(?:(?:^|,)(BOUCLE|PYROELECTRIQUE|BOUCLE A INDUCTION|CAPTEUR A INDUCTION MAGNETIQUE|CAPTEUR PIEZOELECTRIQUE|RADAR|VIDEO|PNEUMATIQUE|DALLES CAPTEUR DE PRESSION|CAPTEUR A FAISCEAU LUMINEUX|HUMAIN|TUBE|AUTRE))+$"
+            "pattern": "(?:(?:^|,)(BOUCLE|PYROELECTRIQUE|BOUCLE A INDUCTION|CAPTEUR A INDUCTION|CAPTEUR PIEZOELECTRIQUE|RADAR|VIDEO|TUBE PNEUMATIQUE|DALLES CAPTEUR DE PRESSION|CAPTEUR A FAISCEAU LUMINEUX|HUMAIN|AUTRE))+$"
          }
       },
       {
@@ -214,7 +214,7 @@
       },
       {
          "name": "sens_circulation_2",
-         "description": "deuxième direction vers laquelle se dirigent les usagers comptés. Ce champ est reservé aux appareils pouvant compter dans deux sens de circulations.",
+         "description": "deuxième direction vers laquelle se dirigent les usagers comptés. Ce champ est réservé aux appareils distinguant les sens de circulations.",
          "example": "NO",
          "type": "string",
          "constraints": {
