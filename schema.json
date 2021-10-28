@@ -1,16 +1,14 @@
 {
    "$schema": "https://specs.frictionlessdata.io/schemas/table-schema.json",
-   "name": "schema-comptage-velo-statique",
-   "title": "Schéma du comptage de vélos (partie statique)",
-   "description": "Spécification du fichier d'échange relatif aux comptages de vélos.",
+   "name": "comptage-mobilites-site",
+   "title": "Comptage des mobilités (Channel)",
+   "description": "Spécification du fichier d'échange relatif aux comptages des mobilités.",
    "keywords": [
       "comptage",
-      "vélo",
-      "mobilité",
-      "statique"
+      "mobilité"
    ],
    "countryCode": "FR",
-   "homepage": "https://github.com/etalab/schema-comptage-velo-statique",
+   "homepage": "https://github.com/etalab/schema-comptage-velo-dynamique",
    "licenses": [
       {
          "title": "Etalab Licence Ouverte 2.0",
@@ -22,11 +20,11 @@
       {
          "title": "Fichier valide (CSV)",
          "name": "exemple-valide-csv",
-         "path": "https://github.com/etalab/schema-comptage-velo-statique/raw/master/exemple-valide.csv"
+         "path": ""
       }
    ],
-   "created": "2021-05-03",
-   "lastModified": "2021-05-25",
+   "created": "2021-05-06",
+   "lastModified": "2021-10-25",
    "version": "0.1.0",
    "contributors": [
       {
@@ -48,6 +46,12 @@
          "role": "contributor"
       },
       {
+         "title": "Vincent Dieulesaint",
+         "email": "vincent.dieulesaint@eco-counter.com ",
+         "organisation": "Eco-compteur",
+         "role": "contributor"
+      },
+      {
          "title": "Emmanuel Roche",
          "email": "emmanuel.roche@grandchambery.fr",
          "organisation": "Grand Chambéry",
@@ -56,17 +60,35 @@
    ],
    "fields": [
       {
-         "name": "nom_compteur",
-         "description": "Nom du compteur",
-         "example": "Baix",
+         "name": "channel_id",
+         "description": "Identifiant unique du channel dans le référentiel de la collectivité. Cette valeur doit être utilisée dans le champ `channel_id`du fichier `measure` pour faire le lien. Cette valeur doit être unique dans l'ensemble des fichiers.",
+         "example": "C-C-01-Baix",
+         "type": "string",
+         "constraints": {
+            "required": true
+         }
+      },
+      {
+         "name": "channel_provider_id",
+         "description": "identifiant unique du channel dans le référentiel du fournisseur technique. Cette information est utile à des fins de diagnostics/synchronisation de données.",
+         "example": "EC-01-Baix",
          "type": "string",
          "constraints": {
             "required": false
          }
       },
       {
-         "name": "id_local_compteur",
-         "description": "Identifiant unique du compteur dans les bases de données de la collectivité territoriale productrice de données",
+         "name": "site_provider_id",
+         "description": "Identifiant channel dans le réferentiel fournisseur. Cette information ne peut être portée par le site lui même car ça peut être un format multi-fournisseurs.",
+         "example": "MC-Baix",
+         "type": "string",
+         "constraints": {
+            "required": false
+         }
+      },
+      {
+         "name": "site_id",
+         "description": "Identifiant unique du site (dans le référentiel de la collectivité) où est installé le compteur dans les bases de données de la collectivité territoriale productrice de données. Cette valeur doit être utilisée dans le champ `site_id`du fichier `channel` pour faire le lien. ",
          "example": "C01-Baix",
          "type": "string",
          "constraints": {
@@ -74,138 +96,90 @@
          }
       },
       {
-         "name": "id_site_comptage",
-         "description": "Identifiant unique du site où est installé le compteur dans les bases de données de la collectivité territoriale productrice de données. Ce champ peut être utilisé pour grouper plusieurs compteurs entre eux",
-         "example": "C-Baix",
+         "name": "mobility_type",
+         "description": "Types de pratiques enregistrés par le compteur sur l'infrastructure. Choix multiple possible avec chaque valeur séparée par un \"pipe\" |.",
+         "example": "E-SCOOTER|PEDESTRIAN",
+         "type": "string",
+         "constraints": {
+            "required": false,
+            "pattern": "(?:(?:^|,)(BIKE|TWO WHEELS MOTORIZED|PEDESTRIAN|E\\-SCOOTER|HORSE\\-RIDER|CAR|BUS|MINIBUS|TRUCK|VAN|TRAMWAY|CANOE|UNDEFINED))+$"
+         }
+      },
+      {
+         "name": "comment",
+         "description": "description textuelle de l'usage du channel. Par exemple, peut être utilisé pour indiquer une campagne de relevé temporaire. 50 caractères autorisés.",
+         "example": "Campagne temporaire aout-septembre 2020",
          "type": "string",
          "constraints": {
             "required": false
          }
       },
       {
-         "name": "code_com",
-         "description": "Code INSEE de la commune où se trouve le compteur vélo",
-         "example": "07022",
-         "type": "string",
-         "constraints": {
-            "required": false,
-            "pattern": "^([013-9]\\d|2[AB1-9])\\d{3}$"
-         }
-      },
-      {
-         "name": "xlong",
-         "description": "La longitude en degrés décimaux (point comme séparateur décimal, avec au moins 4 chiffres après le point décimal) de la localisation du centre de l'emplacement du compteur exprimée dans le système de coordonnées WGS84.",
-         "example": "1.452323",
-         "type": "number",
-         "constraints": {
-            "required": true,
-            "minimum": -180,
-            "maximum": 180
-         }
-      },
-      {
-         "name": "ylat",
-         "description": "La latitude en degrés décimaux (point comme séparateur décimal, avec au moins 4 chiffres après le point décimal) de la localisation de centre de l'emplacement du compteur exprimée dans le système de coordonnées WGS84.",
-         "example": "46.59698",
-         "type": "number",
-         "constraints": {
-            "required": true,
-            "minimum": -90,
-            "maximum": 90
-         }
-      },
-      {
-         "name": "type_pratique",
-         "description": "Types de pratiques enregistrés par le compteur sur la voie. Choix multiple possible avec chaque valeur encadrée par des guillemets et séparée par une virgule",
-         "example": "VELO",
-         "type": "string",
-         "constraints": {
-            "required": false,
-            "pattern": "(?:(?:^|,)(VELO|SCOOTER|PIETON|TROTINETTE|CAVALIER|NON DEFINI))+$"
-         }
-      },
-      {
-         "name": "type_voie",
-         "description": "Type de voie où est installé le compteur vélo",
-         "example": "VOIE VERTE",
+         "name": "counter_transmission_type",
+         "description": "Méthode utilisée pour récupérer les données depuis le compteur.",
+         "example": "MANUAL",
          "type": "string",
          "constraints": {
             "required": false,
             "enum": [
-               "PISTE CYCLABLE",
-               "BANDE CYCLABLE",
-               "DOUBLE SENS CYCLABLE PISTE",
-               "DOUBLE SENS CYCLABLE BANDE ",
-               "VOIE VERTE",
-               "VELO RUE",
-               "COULOIR BUS VELO",
-               "RAMPE",
-               "GOULOTTE",
-               "AMENAGEMENT MIXTE PIETON VELO HORS VOIE VERTE",
-               "CHAUSSEE A VOIE CENTRALE BANALISEE",
-               "ACCOTEMENT REVETU HORS CVCB",
-               "AUTRE"
+               "REMOTE TRANSMISSION",
+               "MANUAL"
             ]
          }
       },
       {
-         "name": "id_amenagement_cyclable",
-         "description": "identifiant de l'aménagement cyclable dans la base nationale des aménagements cyclables",
-         "example": "07022-AC-001",
-         "type": "string",
-         "constraints": {
-            "required": false
-         }
-      },
-      {
-         "name": "type_releve",
-         "description": "Méthode utilisée pour récupérer les données depuis le compteur",
-         "example": "MANUEL",
-         "type": "string",
-         "constraints": {
-            "required": false,
-            "enum": [
-               "TELETRANSMISSION",
-               "MANUEL"
-            ]
-         }
-      },
-      {
-         "name": "type_transmission",
-         "description": "Méthode utilisée pour transmettre les données vers le portail opendata",
+         "name": "publication_transmission_type",
+         "description": "Méthode utilisée pour transmettre les données vers le portail opendata.",
          "example": "API",
          "type": "string",
          "constraints": {
             "required": false,
             "enum": [
                "API",
-               "MANUEL"
+               "MANUAL"
             ]
          }
       },
       {
-         "name": "type_compteur",
-         "description": "Type de compteur. Choix multiple possible avec chaque valeur séparée par une virgule",
-         "example": "VIDEO",
+         "name": "counter_type",
+         "description": "Type de compteur. Choix multiple possible avec chaque valeur encadrée par des guillemets et séparée par une virgule. En cas de multiples valeurs, les comptages sont considérés comme étant aggrégées, sans différenciation. Si on souhaite différencier les pratiques, il faut créer plusieurs channels.",
+         "example": "VIDEO SENSOR",
          "type": "string",
          "constraints": {
             "required": false,
-            "pattern": "(?:(?:^|,)(BOUCLE|PYROELECTRIQUE|BOUCLE A INDUCTION|CAPTEUR A INDUCTION|CAPTEUR PIEZOELECTRIQUE|RADAR|VIDEO|TUBE PNEUMATIQUE|DALLES CAPTEUR DE PRESSION|CAPTEUR A FAISCEAU LUMINEUX|HUMAIN|AUTRE))+$"
+            "enum": [
+               "INDUCTIVE LOOP",
+               "ELECTROMAGNETIC SENSOR",
+               "PASSIVE INFRARED",
+               "ACTIVE INFRARED",
+               "PIEZOELECTRIC SENSOR",
+               "RADAR SENSOR",
+               "VIDEO SENSOR",
+               "PNEUMATIC TUBE SENSOR",
+               "SLAB SENSOR",
+               "LIGHT BEAM SENSOR",
+               "MANUAL",
+               "ACOUSTIC",
+               "LIDAR",
+               "OPTICAL FIBER SENSOR",
+               "MAGNETOMETER",
+               "OTHER"
+            ]
          }
       },
       {
-         "name": "sens_circulation_1",
-         "description": "direction vers laquelle se dirigent les usagers comptés",
-         "example": "SO",
+         "name": "direction",
+         "description": "Direction vers laquelle se dirigent les usagers comptés dans le sens 1. Si besoin de modéliser 2 directions, créez deux channels.",
+         "example": "SW",
          "type": "string",
          "constraints": {
             "required": false,
             "enum": [
                "N",
-               "NO",
+               "NW",
                "NE",
-               "O",
-               "SO",
+               "W",
+               "SW",
                "S",
                "SE",
                "E"
@@ -213,60 +187,77 @@
          }
       },
       {
-         "name": "sens_circulation_2",
-         "description": "deuxième direction vers laquelle se dirigent les usagers comptés. Ce champ est réservé aux appareils distinguant les sens de circulations.",
-         "example": "NO",
+         "name": "provider_direction_code",
+         "description": "Codification interne aux fournisseurs qui permet d'identifier le sens comme les notions d `IN/OUT`.",
+         "example": "IN",
          "type": "string",
-         "constraints": {
-            "required": false,
-            "enum": [
-               "N",
-               "NO",
-               "NE",
-               "O",
-               "SO",
-               "S",
-               "SE",
-               "E"
-            ]
-         }
-      },
-      {
-         "name": "source",
-         "description": "Entité ayant fourni les données",
-         "example": "Baix",
-         "type": "string",
-         "constraints": {
-            "required": true
-         }
-      },
-      {
-         "name": "date_service",
-         "description": "Date de mise en service du compteur vélo, Notation ISO 8601, format AAAA-MM-JJ",
-         "example": "2019-03-21",
-         "type": "date",
          "constraints": {
             "required": false
          }
       },
       {
-         "name": "date_maj",
-         "description": "Date de dernière mise à jour des données, Notation ISO 8601, format AAAA-MM-JJ",
-         "example": "2021-05-03",
-         "type": "date",
+         "name": "provider_direction_name",
+         "description": "Description de la direction qui peut aider un réutilisateur à comprendre le `provider_direction_code` notamment lorsque le fournisseur ne peut pas, pour l'instant, fournir de champ `direction`.",
+         "example": "De Gare du Nord vers Gare de l'Est",
+         "type": "string",
          "constraints": {
             "required": false
          }
       },
       {
-         "name": "pas_de_temps",
-         "description": "Pas de temps des données fournies, en secondes. Doit être utilisé pour extrapoler la date de fin du comptage si elle est absente.",
+         "name": "data_provider_name",
+         "description": "Entité ayant fourni les données.",
+         "example": "ADAV",
+         "type": "string",
+         "constraints": {
+            "required": false
+         }
+      },
+      {
+         "name": "temporality",
+         "description": "Périodicité du comptage. Le compteur compte t il temporairement ou de manière permanente sur un même site  ?",
+         "example": "PERMANENT",
+         "type": "string",
+         "required": true,
+         "enum": [
+            "TEMPORARY",
+            "PERMANENT"
+         ]
+      },
+      {
+         "name": "started_at",
+         "description": "Date et heure de début de comptage. Utile par exemple pour déclarer un début d'usage de compteur temporaire. Notation ISO 8601, format 1977-04-22T06:00:00Z. Ne doit pas être modifié dans le temps. Si besoin, recréez un nouveau channel).",
+         "example": "2020-06-22T10:00:00Z",
+         "type": "datetime",
+         "required": true
+      },
+      {
+         "name": "ended_at",
+         "description": "Date et heure de fin de comptage. Utile par exemple pour déclarer la fin de l'usage d'un compteur. Notation ISO 8601, format 1977-04-22T06:00:00Z. Si ce champ est rempli, un nouveau channel doit être créé.",
+         "example": "2021-06-22T10:00:00Z",
+         "type": "datetime",
+         "required": false
+      },
+      {
+         "name": "last_updated_at",
+         "description": "Date de dernière mise à jour des données, Notation ISO 8601, format 1977-04-22T06:00:00Z.",
+         "example": "2021-06-22T10:00:00Z",
+         "type": "datetime",
+         "required": false
+      },
+      {
+         "name": "time_step",
+         "description": "Le pas de temps des données fournies, en secondes. Doit être utilisé pour extrapoler la date de fin du comptage si elle est absente. Conditionnellement obligatoire. Obligatoire lorsque le champ `end_datetime` n'est complété",
          "example": "900",
          "type": "number",
-         "constraints": {
-            "required": false
-         }
+         "required": false
+      },
+      {
+         "name": "provider_portal_url",
+         "description": "Page web publique des données.",
+         "example": "http://www.eco-public.com/public2/?id=100057894",
+         "type": "string",
+         "required": false
       }
-   ],
-   "primaryKey": "id_local_compteur"
+   ]
 }
