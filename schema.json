@@ -242,5 +242,6 @@
          "type": "string",
          "required": false
       }
-   ]
+   ],
+   "primaryKey": "channel_id"
 }
