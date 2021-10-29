@@ -31,7 +31,11 @@ jobs:
       run: frictionless validate --schema schema.json exemple-valide.csv
     - name: Vérification du fichier d'exemple CSV 2
       run: frictionless validate --schema schema.json exemple-valide-eco-compteur.csv
-    # TODO @thbar - tweak this to make it work on GitHub action
-    # - name: Vérification des fichiers invalides CSV
-    #   run: |
-    #     frictionless validate --schema schema.json exemple-invalide-primary-key.csv | grep "primary-key-error"
+    # Quick cheap tests: we validate and verify that at least one matching error is found. "grep" will return exit code 0
+    # if a match is found, otherwise non zero (which will cause the GitHub action to fail).
+    - name: Vérification fichier invalide (primary key)
+      run: frictionless validate --schema schema.json exemple-invalide.csv | grep primary-key-error | grep "same as in the row at position 2"
+    - name: Vérification fichier invalide (mobility_type)
+      run: frictionless validate --schema schema.json exemple-invalide.csv | grep constraint-error | grep ERR001 | grep mobility_type | grep "does not conform to a constraint"
+    - name: Vérification fichier invalide (mobility_type)
+      run: rictionless validate --schema schema.json exemple-invalide.csv | grep constraint-error | grep ERR002 | grep mobility_type | grep "does not conform to a constraint"

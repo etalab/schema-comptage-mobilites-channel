@@ -1,0 +1,5 @@
+channel_id,channel_provider_id,site_provider_id,site_id,mobility_type,comment,counter_transmission_type,publication_transmission_type,counter_type,direction,provider_direction_code,provider_direction_name,data_provider_name,temporality,started_at,ended_at,last_updated_at,time_step,provider_portal_url
+test-primary-key-duplicate,,,C01-Baix,,,,,,,,,,,,,,,
+test-primary-key-duplicate,,,C01-Baix,,,,,,,,,,,,,,,
+test-mob-type-incorrect-001,EC-01-Baix,MC-Baix,C01-Baix,ERR001,Campagne temporaire aout-septembre 2020,MANUAL,API,VIDEO SENSOR,SW,IN,De Gare du Nord vers Gare de l'Est,ADAV,PERMANENT,2020-06-22T10:00:00Z,2021-06-22T10:00:00Z,2021-06-22T09:00:00Z,900,http://www.eco-public.com/public2/?id=100057894
+test-mob-type-incorrect-002,EC-01-Baix,MC-Baix,C01-Baix,"ERR002,PEDESTRIAN",Campagne temporaire aout-septembre 2020,MANUAL,API,VIDEO SENSOR,SW,IN,De Gare du Nord vers Gare de l'Est,ADAV,PERMANENT,2020-06-22T10:00:00Z,2021-06-22T10:00:00Z,2021-06-22T09:00:00Z,900,
