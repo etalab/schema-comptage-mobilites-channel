@@ -38,4 +38,4 @@ jobs:
     - name: Vérification fichier invalide (mobility_type)
       run: frictionless validate --schema schema.json exemple-invalide.csv | grep constraint-error | grep ERR001 | grep mobility_type | grep "does not conform to a constraint"
     - name: Vérification fichier invalide (mobility_type)
-      run: rictionless validate --schema schema.json exemple-invalide.csv | grep constraint-error | grep ERR002 | grep mobility_type | grep "does not conform to a constraint"
+      run: frictionless validate --schema schema.json exemple-invalide.csv | grep constraint-error | grep ERR002 | grep mobility_type | grep "does not conform to a constraint"
