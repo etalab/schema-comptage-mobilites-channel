@@ -147,24 +147,7 @@
          "type": "string",
          "constraints": {
             "required": false,
-            "enum": [
-               "INDUCTIVE LOOP",
-               "ELECTROMAGNETIC SENSOR",
-               "PASSIVE INFRARED",
-               "ACTIVE INFRARED",
-               "PIEZOELECTRIC SENSOR",
-               "RADAR SENSOR",
-               "VIDEO SENSOR",
-               "PNEUMATIC TUBE SENSOR",
-               "SLAB SENSOR",
-               "LIGHT BEAM SENSOR",
-               "MANUAL",
-               "ACOUSTIC",
-               "LIDAR",
-               "OPTICAL FIBER SENSOR",
-               "MAGNETOMETER",
-               "OTHER"
-            ]
+            "pattern": "(?:(?:^|,)(INDUCTIVE LOOP|ELECTROMAGNETIC SENSOR|PASSIVE INFRARED|ACTIVE INFRARED|PIEZOELECTRIC SENSOR|RADAR SENSOR|VIDEO SENSOR|PNEUMATIC TUBE SENSOR|SLAB SENSOR|LIGHT BEAM SENSOR|MANUAL|ACOUSTIC|LIDAR|OPTICAL FIBER SENSOR|MAGNETOMETER|OTHER))+$"
          }
       },
       {
