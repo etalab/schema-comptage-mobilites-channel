@@ -97,8 +97,8 @@
       },
       {
          "name": "mobility_type",
-         "description": "Types de pratiques enregistrés par le compteur sur l'infrastructure. Choix multiple possible avec chaque valeur séparée par un \"pipe\" |.",
-         "example": "E-SCOOTER|PEDESTRIAN",
+         "description": "Types de pratiques enregistrés par le compteur sur l'infrastructure. Choix multiple possible avec chaque valeur séparée par une virgule (mais dans ce cas il est impératif d'entourer la totalité de la cellule par des guillemets).",
+         "example": "E-SCOOTER,PEDESTRIAN",
          "type": "string",
          "constraints": {
             "required": false,
@@ -142,7 +142,7 @@
       },
       {
          "name": "counter_type",
-         "description": "Type de compteur. Choix multiple possible avec chaque valeur encadrée par des guillemets et séparée par une virgule. En cas de multiples valeurs, les comptages sont considérés comme étant aggrégées, sans différenciation. Si on souhaite différencier les pratiques, il faut créer plusieurs channels.",
+         "description": "Type de compteur. Choix multiple possible avec chaque valeur séparée par une virgule (mais dans ce cas il est impératif d'entourer la totalité de la cellule par des guillemets). En cas de multiples valeurs, les comptages sont considérés comme étant aggrégées, sans différenciation. Si on souhaite différencier les pratiques, il faut créer plusieurs channels.",
          "example": "VIDEO SENSOR",
          "type": "string",
          "constraints": {
