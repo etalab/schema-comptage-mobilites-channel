@@ -9,8 +9,8 @@ Chacune de ces notions est retranscrite dans son propre fichier :
 les sites vont dans un fichier “sites.csv” avec une ligne par site les channels dans un fichier “channels.csv” (idem)les mesures dans un fichier “measures.csv” (idem)
 Pour l'instant, chacune de ces notions a sa propre page sur schema.data.gouv.fr car des limitations techniques ne permettaient pas de les héberger sur la même page.
 - site : https://github.com/etalab/comptage-mobilites-site
-- measure :https://github.com/etalab/comptage-mobilites-channel Chaque entité a son propre fichier. Ces fichiers s’articulent entre eux grâce à des identifiants.
- Chaque entité a son propre fichier. Ces fichiers s’articulent entre eux grâce à des identifiants. 
+- measure : https://github.com/etalab/comptage-mobilites-measure
+Chaque entité a son propre fichier. Ces fichiers s’articulent entre eux grâce à des identifiants.
 
 Ce schéma est spécifique à la notion de channel. 
 La notion de "channel" a été introduite pour faire le lien entre la réalité immuable physique du site, et les mesures fournies par des “compteurs physiques”.
