@@ -1,2 +1,0 @@
-nom_compteur,id_local_compteur,id_site_comptage,code_com,xlong,ylat,type_pratique,type_voie,id_amenagement_cyclable,type_releve,type_transmission,type_compteur,sens_circulation_1,sens_circulation_2,source,date_service,date_maj,pas_de_temps
-Baix,C01-Baix,C-Baix,07022,44.711910,4.764110,"VELO","VOIE VERTE",07022-AC-001,"MANUEL","API","BOUCLE A INDUCTION,VIDEO,VALEUR INTERDITE","SO","NO",Baix,2019-03-21,2021-05-03,900

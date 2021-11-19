@@ -1,58 +1,58 @@
 :warning: Travail en cours de mise au point d'un schéma pour le schéma de comptage vélo.
 
-# Schéma de données pour le comptage de vélos (partie statique)
+# Schéma de données pour le comptage des mobilités - Fichier channel
 
-Spécifications du fichier d'échange relatif aux comptages de vélos.
+Spécifications du fichier d'échange relatif aux comptages des mobilités : fichier channel.
 
-Ce schéma permet de recenser et décrire les compteurs de vélos d'une collectivité. Ce sont les métadonnées.
-Pour connaître le nombre de passages comptabilisé par les compteurs, ce fichier doit être associé au schéma de comptage de vélos "dynamique" (https://github.com/etalab/schema-comptage-velo-dynamique).  
-L'identifiant unique du compteur dans les bases de données de la collectivité territoriale productrice de données permet de faire la jointure entre ces deux fichiers.
+Le schéma de comptage des mobilités est structuré en trois notions distinctes : les sites, les channels, et les mesures.
+Chacune de ces notions est retranscrite dans son propre fichier :
+les sites vont dans un fichier “sites.csv” avec une ligne par site les channels dans un fichier “channels.csv” (idem)les mesures dans un fichier “measures.csv” (idem)
+Pour l'instant, chacune de ces notions a sa propre page sur schema.data.gouv.fr car des limitations techniques ne permettaient pas de les héberger sur la même page.
+- site : https://github.com/etalab/comptage-mobilites-site
+- measure :https://github.com/etalab/comptage-mobilites-channel Chaque entité a son propre fichier. Ces fichiers s’articulent entre eux grâce à des identifiants.
+ Chaque entité a son propre fichier. Ces fichiers s’articulent entre eux grâce à des identifiants. 
+
+Ce schéma est spécifique à la notion de channel. 
+La notion de "channel" a été introduite pour faire le lien entre la réalité immuable physique du site, et les mesures fournies par des “compteurs physiques”.
+Ce fichier définit les modalités techniques de comptage (types de pratiques mesurées, méthode utilisée pour récupérer les données), et permet de regrouper entre elles des mesures. À l’inverse, un channel ne définit pas d’identifiant physique du compteur, de façon volontaire.
+Ceci permet de faire en sorte qu’un premier compteur physique émette des données sur un channel de 10h à 11h, puis qu’un deuxième compteur physique prenne le relais de 11h à 12h, sans changement du channel lui-même (continuité de la série temporelle des mesures).
+Cette capacité permet notamment de gérer correctement:
+- les changements de compteur physique (opération de maintenance, compteur défectueux, interruption temporaire)
+- les réaffectations à un site différent de compteurs physiques, sous forme de “compteurs temporaires”.
 
 ## Contexte
 
-Dans le cadre des travaux de l’équipe du Point d’accès national et de la mise en oeuvre de l’ouverture des données pour améliorer l’information dont disposent les voyageurs, l’équipe de transport.data.gouv.fr propose une solution simple et structurée pour l’harmonisation et l'ouverture des données de comptage de vélos : le schéma de comptage de vélos "statique" et "dynamique".
+Dans le cadre des travaux de l’équipe du Point d’accès national et de la mise en œuvre de l’ouverture des données pour améliorer l’information dont disposent les voyageurs, l’équipe de [transport.data.gouv.fr](https://transport.data.gouv.fr/), en collaboration avec l'association [Vélo & Territoires](https://www.velo-territoires.org/) et [Eco-compteur](https://www.eco-compteur.com/), propose une solution simple et structurée pour l’ouverture des données de comptage des mobilités : le schéma national de comptage des mobilités. Il s’adresse à toute collectivité qui souhaite se lancer dans l’ouverture de jeux de données décrivant la fréquentation de leurs infrastructures.
 
-Cette distinction statique/dynamique a été faite car :
-- le fichier "statique" permet de donner des précisions sur le compteur vélo comme sa localisation, la méthode utilisée pour récupérer et transmettre les données, les types de pratiques comptabilisées etc.
-- le fichier "dynamique" permet d'enregistrer le nombre de passage pendant un temps défini. 
-
-Ce schéma décrit fichier d’échange pour les compteurs de vélos. 
-Il a été co-construit avec Vélo & Territoires, des collectivités, des fournisseurs de compteur de vélos, associations d'usagers de vélos et des réutilisateurs. Deux ateliers ouverts (le 23/04/2021 et le //2021) ont permis sa production. 
+Trois ateliers ouverts (le 23/04/2021) le 17/06/2021, et le 28/09/2021) ont permis sa production. Il a notamment été établi après des entretiens avec différents fournisseurs de solutions de comptage ([Eco-Compteur](https://www.eco-compteur.com/), [Metrocount](https://metrocount.com/fr/), [Alyce](https://alyce.fr/), [Sterela](http://www.sterela.fr/), [TagMaster](https://tagmaster.com/), [Wintics](https://wintics.com/fr/)) afin de nous assurer que les champs proposés répondaient bien à leurs besoins et compétences. Ce schéma permet de recenser les sites de comptages et de comptabiliser la fréquentation d'infrastructures. 
 
 ## Cadre juridique
 
-L’ouverture des données sur le comptage de vélos ne répond à aucune obligation réglementaire et n'est donc pas encadrée par le Règlement Européen (UE 2017 1926) ni par la Loi d'Orientation des Mobilités.
+L’ouverture des données sur le comptage des mobilités ne répond à aucune obligation réglementaire et n'est pas encadrée par le Règlement Européen (UE 2017 1926) ni par la Loi d'Orientation des Mobilités.
 
-Les collectivités harmonisent et publient ces données librement. 
+Les collectivités harmonisent et publient donc ces données librement.  
 
 ## Finalité
 
-Afin de faciliter la réutilisation et réduire le coût d’intégration de ces données dans des services tiers, un schéma a été défini afin d’assurer une harmonisation de ces données sur l’ensemble du territoire. Ce schéma définit des informations indispensables et complémentaires à fournir par le producteur. Cette distinction a été mise en place pour ne pas pénaliser les petits producteurs de données, et définit un standard minimal de complétude des données. Il est toutefois demandé aux producteurs de données de compléter le schéma avec le plus grand niveau de détail possible, afin de transmettre une information plus riche à l’usager final. 
+Pour faciliter la réutilisation et réduire le coût d’intégration des données de comptage des mobilités dans des services tiers, un schéma a été défini afin d’assurer une harmonisation de ces données sur l’ensemble du territoire. Il permet de modéliser les comptages de différents types de mobilité : vélos, trottinettes, piétons, scooters, motos, camions, etc. 
 
-La base présente plusieurs cas d’usage :
-elle recense les compteurs de vélos d’une collectivité en permettant à des services de calcul d’itinéraire d’intégrer ces données et à chacun de suivre la fréquentation cyclable d'un territoire donné. 
-Ce dataset comprend notamment : 
-- l'identifiant unique pérenne du compteur ;
-- la localisation du compteur ;
-- les types de pratiques enregistrés par le compteur sur la voie ;
-- la méthode utilisée pour récupérer les données depuis le compteur ;
-- le type de compteur ;
-- le pas de temps des données fournies
-etc.
+Ce schéma permet d'estimer la fréquentation d'infrastructures grâce à des données dynamiques de comptage. 
+Il doit être associé au schéma "site" et "channel" de comptage des mobilité. Il ne peut être réutilisé sans ces fichiers.
+
+Ce schéma définit des informations obligatoires, qui sont nécessaires pour fournir une information voyageur minimale, et complémentaires à fournir par le producteur. Cette distinction a été mise en place pour ne pas pénaliser les petits producteurs de données, et définit un standard minimal de complétude des données. Il est toutefois demandé aux producteurs de données de compléter le schéma avec le plus grand niveau de détail possible, afin de transmettre une information plus riche à l’usager final.
+La base présente plusieurs cas d’usage : elle recense les sites de comptage d’une collectivité en permettant à des services de calcul d’itinéraire d’intégrer ces données et à chacun de suivre la fréquentation des mobilités d'un territoire donné.
 
 ## Format de fichier
 
-Les jeux de données seront publiés au format CSV UTF8 avec séparateur virgule ",". Certains champs sont obligatoires et d'autres optionnels. Les champs obligatoires doivent être complétés. Les champs optionnels peuvent être vides si la donnée n’est pas disponible. La colonne doit toutefois être présente.
+Les jeux de données seront publiées au format CSV UTF8 avec séparateur virgule ",". Certains champs sont obligatoires et d'autres optionnels. Les champs obligatoires doivent être complétés. Les champs optionnels peuvent être vides si la donnée n’est pas disponible. La colonne doit toutefois être présente.
 
 ## Publication
 
-Dans le but de maintenir à jour un répertoire des compteurs de vélos en France, les collectivités sont invitées à transmettre systématiquement les données relatives aux compteurs sur leur territoire. 
-Elles peuvent ajouter le mot-clef "comptage-velo" lors de la publication du jeu de données dans leur espace de publication (portail local ou régional) ou directement sur data.gouv.fr.
-Les producteurs pourront :
+Dans le but de maintenir à jour un répertoire des compteurs de vélos en France, les collectivités sont invitées à transmettre systématiquement les données relatives aux compteurs sur leur territoire. Elles peuvent ajouter le mot-clef "comptage-mobilites" lors de la publication du jeu de données dans leur espace de publication (portail local ou régional) ou directement sur data.gouv.fr. Les producteurs pourront :
+
 - publier directement sur data.gouv.fr ;
 - publier sur un portail local ou régional et s'assurer que les données publiées sont bien moissonnées et référencées sur data.gouv.fr.
-
-Nous préconisons aux producteurs de données de publier leurs fichiers avec la règle de nommage suivante : `comptagevelo_statique_nom.csv` avec nom étant le nom de la collectivité productrice des données, par exemple `comptagevelo_statique_Baix.csv`.
+Nous préconisons aux producteurs de données de publier leurs fichiers avec la règle de nommage suivante : comptagemobilites_nom.csv avec nom étant le nom de la collectivité productrice des données, par exemple comptagemobilite_Baix.csv
 
 
 ## Conditions d’utilisation
@@ -63,11 +63,11 @@ Nous tenons à remercier les membres du groupe de travail pour leur investisseme
 
 
 ## Fichiers d'exemple
-Un fichier d'exemple valide "exemple-valide.csv" a été édité où tous les champs ont été remplis.
+Trois fichiers d'exemples sont fournis pour ce schéma :
 
-Deux fichiers d'exemples invalides sont fournis  : 
-- un fichier d'exemple "exemple-invalide-type_compteur.csv" afin d'illustrer une erreur qui pourrait être faite par un producteur dans le champ "type_compteur". 
-- un fichier d'exemple "exemple-invalide-doublon-primary-key.csv" où l'erreur repose sur le fait qu'il y ait deux fois le même identifiant unique de compteur. La valeur "id_local_compteur" ne peut être présente deux fois dans un seul fichier. 
+- un fichier d'exemple "exemple-valide.csv" avec tous les champs remplis ;
+- un fichier d'exemple "exemple-valide-eco-compteur.csv" élaboré par Eco-Compteur dont certaines valeurs optionnelles ne sont pas renseignées.
+- un fichier d'exemple invalide "exemple-invalide" qui contient des erreurs pour les champs "mobility_type" et "channel_id" 
 
 ## Notes techniques pour contribuer à ce schéma
 
@@ -118,11 +118,9 @@ frictionless validate --type schema schema.json
 frictionless validate --schema schema.json exemple-valide.csv
 # retour positif
 
-# Test de la non-conformité des fichiers non valides
-frictionless validate --schema schema.json exemple-invalide-doublon-primary-key.csv 
-# erreurs
+# Test de la conformité des fichiers d'exemples
+frictionless validate --schema schema.json exemple-valide-eco-compteur.csv
+# retour positif
 
-frictionless validate --schema schema.json exemple-invalide-type_compteur.csv
-# idem
 ```
 
