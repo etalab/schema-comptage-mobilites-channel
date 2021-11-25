@@ -1,6 +1,6 @@
 {
    "$schema": "https://specs.frictionlessdata.io/schemas/table-schema.json",
-   "name": "comptage-mobilites-site",
+   "name": "comptage-mobilites-channel",
    "title": "Comptage des mobilités (Channel)",
    "description": "Spécification du fichier d'échange relatif aux comptages des mobilités.",
    "keywords": [
@@ -8,7 +8,7 @@
       "mobilité"
    ],
    "countryCode": "FR",
-   "homepage": "https://github.com/etalab/schema-comptage-velo-dynamique",
+   "homepage": "https://github.com/etalab/comptage-mobilites-channel",
    "licenses": [
       {
          "title": "Etalab Licence Ouverte 2.0",
@@ -20,11 +20,16 @@
       {
          "title": "Fichier valide (CSV)",
          "name": "exemple-valide-csv",
-         "path": ""
+         "path": "https://github.com/etalab/comptage-mobilites-channel/blob/master/exemple-valide.csv"
+      },
+      {
+         "title": "Deuxième fichier valide (CSV)",
+         "name": "exemple-valide-eco-compteur.csv",
+         "path": "https://github.com/etalab/comptage-mobilites-channel/blob/master/exemple-valide-eco-compteur.csv"
       }
    ],
    "created": "2021-05-06",
-   "lastModified": "2021-10-25",
+   "lastModified": "2021-11-25",
    "version": "0.1.0",
    "contributors": [
       {
@@ -61,7 +66,7 @@
    "fields": [
       {
          "name": "channel_id",
-         "description": "Identifiant unique du channel dans le référentiel de la collectivité. Cette valeur doit être utilisée dans le champ `channel_id`du fichier `measure` pour faire le lien. Cette valeur doit être unique dans l'ensemble des fichiers.",
+         "description": "Identifiant unique du channel dans le référentiel de la collectivité. Cette valeur doit être utilisée dans le champ `channel_id` du fichier `measure` pour faire le lien. Cette valeur doit être unique dans l'ensemble des fichiers.",
          "example": "C-C-01-Baix",
          "type": "string",
          "constraints": {
@@ -88,7 +93,7 @@
       },
       {
          "name": "site_id",
-         "description": "Identifiant unique du site (dans le référentiel de la collectivité) où est installé le compteur dans les bases de données de la collectivité territoriale productrice de données. Cette valeur doit être utilisée dans le champ `site_id`du fichier `channel` pour faire le lien. ",
+         "description": "Identifiant unique du site (dans le référentiel de la collectivité) où est installé le compteur dans les bases de données de la collectivité territoriale productrice de données. Cette valeur doit faire référence au champ `site_id` du fichier `site` pour faire le lien.",
          "example": "C01-Baix",
          "type": "string",
          "constraints": {
@@ -107,7 +112,7 @@
       },
       {
          "name": "comment",
-         "description": "description textuelle de l'usage du channel. Par exemple, peut être utilisé pour indiquer une campagne de relevé temporaire. 50 caractères autorisés.",
+         "description": "Description textuelle de l'usage du channel. Par exemple, peut être utilisé pour indiquer une campagne de relevé temporaire. 50 caractères autorisés.",
          "example": "Campagne temporaire aout-septembre 2020",
          "type": "string",
          "constraints": {
@@ -198,7 +203,7 @@
       },
       {
          "name": "temporality",
-         "description": "Périodicité du comptage. Le compteur compte t il temporairement ou de manière permanente sur un même site  ?",
+         "description": "Périodicité du comptage. Le compteur compte-t-il temporairement ou de manière permanente sur un même site ?",
          "example": "PERMANENT",
          "type": "string",
          "required": true,
