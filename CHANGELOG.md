@@ -1,7 +1,7 @@
 # Changelog
 
 Ce fichier répertorie les changements entre différentes versions d'un schéma.
-## Version 0.2.2 du 2022-02-23
+## Version 0.2.2 du 2023-02-23
 
 - Aucun changement. Ajustement avec version comptage-mobilité-site
 
