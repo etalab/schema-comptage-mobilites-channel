@@ -1,4 +1,6 @@
-:warning: Travail en cours de mise au point d'un schéma pour le schéma de comptage vélo.
+:warning: Ce schéma n'est plus valable.  
+Pour simplifier la lecture du schéma des comptages des mobilités, les trois sous-schémas qui le composent : channel - site et measures ont été réunis dans un même schéma. Vous pouvez accéder au schéma national de comptage des mobilités ici : https://schema.data.gouv.fr/etalab/schema-comptage-mobilites/
+
 
 # Schéma de données pour le comptage des mobilités - Fichier channel
 
